@@ -17,7 +17,7 @@ module.exports = {
     open: false,
     proxy: {
       '/api': {
-        target:  '',
+        target:  'http://192.168.1.92/api',
         // target:  'http://192.168.1.92/api',
         changeOrigin: true,
         cookieDomainRewrite: '127.0.0.1',        

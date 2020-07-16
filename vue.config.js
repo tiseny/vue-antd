@@ -2,8 +2,8 @@
 const path = require('path')
 const TerserPlugin = require('terser-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
-const UglifyJsWebpackPlugin = require("uglifyjs-webpack-plugin");
 const ThemeColorReplacer = require('webpack-theme-color-replacer')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const {getThemeColors, modifyVars} = require('./src/helpers/themeUtil')
 const {resolveCss} = require('./src/helpers/theme-color-replacer-extend')
 const { baseAlias, devServer } = require('./config')
@@ -39,6 +39,9 @@ module.exports = {
     )
 
     if (process.env.NODE_ENV === 'production') {
+       // 分析
+      config.plugins.push(new BundleAnalyzerPlugin())
+
       config.plugins.push(
         new TerserPlugin({
           terserOptions: {
